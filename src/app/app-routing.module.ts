@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { registerLocaleData } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
+import { ListeMangasComponent } from './Mangas/liste-mangas/liste-mangas.component';
 
 const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -12,6 +13,8 @@ const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'header',component:HeaderComponent},
     {path:'register',component:RegisterComponent},
+    {path:'listeMangas',component:ListeMangasComponent},
+
 
 
 

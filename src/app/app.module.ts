@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
+import { ListeMangasComponent } from './Mangas/liste-mangas/liste-mangas.component';
 
 
 
@@ -17,7 +18,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListeMangasComponent
   ],
   imports: [
     BrowserModule,
