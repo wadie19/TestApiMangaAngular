@@ -26,7 +26,7 @@ import { ListeMangasComponent } from './Mangas/liste-mangas/liste-mangas.compone
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

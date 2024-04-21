@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MangaService } from 'src/app/services/manga.service';
 
 @Component({
@@ -13,6 +13,8 @@ export class ListeMangasComponent implements OnInit {
   errorMessage: string = '';
   isAscending: boolean = true;
 
+  filteredMangas: any[] = [];
+
   constructor(private mangaService: MangaService) { }
 
   ngOnInit(): void {
@@ -23,6 +25,7 @@ export class ListeMangasComponent implements OnInit {
       this.mangaService.getAllMangas(token).subscribe(
         (response) => {
           this.mangas = response.data; 
+          this.filteredMangas = this.mangas; // Initialisation avec tous les mangas
           this.sortMangas();
 
         },
@@ -48,5 +51,13 @@ export class ListeMangasComponent implements OnInit {
   SortOrder(): void {
     this.isAscending = !this.isAscending;
     this.sortMangas(); 
+  }
+
+
+  //mettre en place une barre de recherche
+  onSearch(valeur: string): void {
+    this.filteredMangas = this.mangas.filter((manga) =>
+      manga.name.toLowerCase().includes(valeur.toLowerCase())
+    );
   }
 }
