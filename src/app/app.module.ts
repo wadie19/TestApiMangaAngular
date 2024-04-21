@@ -19,7 +19,7 @@ import { ListeMangasComponent } from './Mangas/liste-mangas/liste-mangas.compone
     HomeComponent,
     HeaderComponent,
     RegisterComponent,
-    ListeMangasComponent
+    ListeMangasComponent,
   ],
   imports: [
     BrowserModule,

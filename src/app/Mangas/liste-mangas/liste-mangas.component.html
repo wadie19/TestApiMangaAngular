@@ -17,15 +17,34 @@
         <div class="col-md-6 offset-md-3">
           <div class="input-group mb-3">
 
-            <input type="text" #searchInput class="form-control" placeholder="Recherchez..." (input)="onSearch(searchInput.value)">
+            <!--input type="text" #searchInput class="form-control" placeholder="Recherchez..." (input)="onSearch(searchInput.value)"-->
             
-            <!--input type="text" #searchInput class="form-control" placeholder="Search..."-->
-            <!--button class="btn btn-primary" (click)="onSearch(searchInput.value)">Search</button-->
+            <input type="text" #searchInput class="form-control" placeholder="Recherchez...">
+            <button style="margin: 5px;" class="btn btn-primary" (click)="onSearch(searchInput.value)">rechercher</button>
           </div>
         </div>
       </div>
     <div *ngIf="filteredMangas.length === 0 && !errorMessage" class="alert alert-info">Aucun manga trouvé.</div>
 
+
+    <div class=" order-first">
+        <div>  
+            <div style="display: flex;">
+                <p style="font-weight: bold; margin-right: 10px; padding: 5px 10px; background-color: #f2f2f2; color: #333; border-radius: 5px; text-decoration: none;">Trier par catégorie : </p>
+
+                <ul style="padding: 0; list-style: none; display: flex; flex-wrap: wrap;">
+                    <li style="margin-right: 10px; "><a style="cursor:pointer; padding: 5px 10px; background-color: #f2f2f2; color: #333; border-radius: 5px; text-decoration: none;" (click)="filterByCat(undefined)">
+                        Tous
+                        <span class="fa fa-angle-right" style="margin-left: 5px;"></span>
+                      </a></li>
+                    <li *ngFor="let category of categoriesFiltred" style="margin-right: 10px; ">
+                        <a style="cursor:pointer; padding: 5px 10px; background-color: #f2f2f2; color: #333; border-radius: 5px; text-decoration: none;" (click)="filterByCat(category.id)">{{category?.name}}<span class="fa fa-angle-right" style="margin-left: 5px;"></span></a>
+                    </li>   
+                </ul>
+            </div>
+        </div>
+    </div>
+    
     <div class="row">
       <ng-container *ngFor="let manga of filteredMangas">
         <div class="col-4 pt-3">
@@ -46,4 +65,3 @@
     </div>
   </div>
   
-

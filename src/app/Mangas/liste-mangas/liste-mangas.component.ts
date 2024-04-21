@@ -15,6 +15,10 @@ export class ListeMangasComponent implements OnInit {
 
   filteredMangas: any[] = [];
 
+  categories: any[] = [];
+
+  categoriesFiltred: any[] = [];
+
   constructor(private mangaService: MangaService) { }
 
   ngOnInit(): void {
@@ -25,8 +29,11 @@ export class ListeMangasComponent implements OnInit {
       this.mangaService.getAllMangas(token).subscribe(
         (response) => {
           this.mangas = response.data; 
-          this.filteredMangas = this.mangas; // Initialisation avec tous les mangas
+          console.log(this.mangas[0].series_type.type.id)
+          this.filteredMangas = this.mangas;
           this.sortMangas();
+          //this.getAllCategories(token);
+          this.getAllItemTypes(token);
 
         },
         (error) => {
@@ -37,10 +44,26 @@ export class ListeMangasComponent implements OnInit {
     } else {
       this.errorMessage = 'Token d\'authentification non trouvé.';
     }
+
   }
+
+  getAllItemTypes(token:string): void {
+    this.mangaService.getItemTypes(token).subscribe(
+    (response) => {
+      this.categoriesFiltred = response.data; 
+      console.log(this.categoriesFiltred)
+
+    },
+    (error) => {
+      this.errorMessage = 'Une erreur s\'est produite lors de la récupération des catégories.';
+      console.error(error);
+    });
+  }
+
+
   // fonction pour classer les mangas par année de sortie
   sortMangas(): void {
-    this.mangas.sort((a, b) => {
+    this.filteredMangas.sort((a, b) => {
       const dateA = new Date(a.release_date).getTime();
       const dateB = new Date(b.release_date).getTime();
       return this.isAscending ? dateA - dateB : dateB - dateA;
@@ -60,4 +83,16 @@ export class ListeMangasComponent implements OnInit {
       manga.name.toLowerCase().includes(valeur.toLowerCase())
     );
   }
+
+  // Méthode pour filtrer les mangas par catégorie
+  filterByCat(id: number | undefined): void {
+
+    if (id === undefined) {
+      this.filteredMangas = this.mangas;
+    } else {
+      this.filteredMangas = this.mangas.filter(
+        manga => manga.series_type.type.id === id);
+    }
+  }
+
 }

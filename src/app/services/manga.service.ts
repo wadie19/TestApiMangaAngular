@@ -16,8 +16,18 @@ export class MangaService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    
+
     return this.http.get<any>(AUTH_API + 'book', { headers: headers });
-}
+  }
+
+  public getItemTypes(token : string) : Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<any[]>(AUTH_API + 'itemtype',  { headers: headers });
+  }
 
 }
