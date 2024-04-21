@@ -1,0 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <h2>Connexion</h2>
+    <hr>
+    <form  [formGroup]="loginForm" (ngSubmit)="login()">
+      <input type="text" ngModel required id="login" class="fadeIn second" name="login" placeholder="login"  formControlName="email">
+      <div *ngIf="email?.touched && email?.invalid">
+        <small class="text-danger" *ngIf="email?.errors?.['required']">email
+          est obligatoire</small>
+          <small class="text-danger" style=" color:brown" *ngIf="email?.errors?.['email']">Format requise : test@example.com</small>
+        </div>
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"  formControlName="password">
+      <div *ngIf="password?.touched && password?.invalid">
+        <small class="text-danger" *ngIf="password?.errors?.['required']">password
+          est obligatoire</small>
+        </div>
+        <br>
+        <br>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <div id="formFooter">
+      <a class="underlineHover" routerLink="/register">S'inscrire</a>
+    </div>
+
+  </div>
+</div>
