@@ -24,6 +24,16 @@ export class MangaService {
     return this.http.get<any>(AUTH_API + 'book', { headers: headers });
   }
 
+  getMangaById(token: string, id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<any>(AUTH_API + 'book/' + id, { headers });
+      
+  }
   public getItemTypes(token : string) : Observable<any>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
@@ -57,6 +67,5 @@ export class MangaService {
   estDansFavoris(manga: Manga): boolean {
     return this.mangasFavoris.includes(manga);
   }
-
 
 }

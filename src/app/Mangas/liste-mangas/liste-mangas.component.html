@@ -56,7 +56,7 @@
               <p>Catégorie : {{ manga.series_type.type.name }}</p>
             </div>
             <div class="card-footer text-muted d-flex justify-content-center">
-              <button type="button" class="btn btn-primary" style="margin-right: 20px;">Détails</button>
+              <button type="button" class="btn btn-primary" [routerLink]="['/detailmangas', manga.id]" style="margin-right: 20px;">Détails</button>
               <button 
                 (click)="toggleFavoris(manga)" 
                 [ngClass]="{
