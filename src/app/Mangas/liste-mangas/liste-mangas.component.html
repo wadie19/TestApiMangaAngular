@@ -1,6 +1,5 @@
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
-<div *ngIf="mangas.length === 0 && !errorMessage" class="alert alert-info">Aucun manga trouvé.</div>
 
 <div class="container mt-4" *ngIf="mangas.length > 0">    
     <div class="row">
@@ -58,6 +57,16 @@
             </div>
             <div class="card-footer text-muted d-flex justify-content-center">
               <button type="button" class="btn btn-primary" style="margin-right: 20px;">Détails</button>
+              <button 
+                (click)="toggleFavoris(manga)" 
+                [ngClass]="{
+                    'btn-favoris': true,
+                    'btn-favoris-ajouter': !estDansFavoris(manga),
+                    'btn-favoris-supprimer': estDansFavoris(manga)
+                }"
+                >
+                {{ estDansFavoris(manga) ? 'Supprimer des favoris' : 'Ajouter aux favoris' }}
+                </button>
             </div>
           </div>
         </div>

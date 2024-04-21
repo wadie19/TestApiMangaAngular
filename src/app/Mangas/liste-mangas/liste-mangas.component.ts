@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Manga } from 'src/app/models/manga.model';
 import { MangaService } from 'src/app/services/manga.service';
 
 @Component({
@@ -29,10 +30,8 @@ export class ListeMangasComponent implements OnInit {
       this.mangaService.getAllMangas(token).subscribe(
         (response) => {
           this.mangas = response.data; 
-          console.log(this.mangas[0].series_type.type.id)
           this.filteredMangas = this.mangas;
           this.sortMangas();
-          //this.getAllCategories(token);
           this.getAllItemTypes(token);
 
         },
@@ -93,6 +92,20 @@ export class ListeMangasComponent implements OnInit {
       this.filteredMangas = this.mangas.filter(
         manga => manga.series_type.type.id === id);
     }
+  }
+
+
+  toggleFavoris(manga: Manga): void {
+    if (this.mangaService.estDansFavoris(manga)) {
+      this.mangaService.supprimerDesFavoris(manga);
+    } else {
+      this.mangaService.ajouterAuFavoris(manga);
+    }
+  }
+
+  // Méthode pour vérifier si un manga est dans les favoris
+  estDansFavoris(manga: Manga): boolean {
+    return this.mangaService.estDansFavoris(manga);
   }
 
 }

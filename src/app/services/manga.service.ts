@@ -1,12 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Manga } from '../models/manga.model';
 const AUTH_API = "https://sandbox.manga-db.com/"
 
 @Injectable({
   providedIn: 'root'
 })
 export class MangaService {
+  
+  private mangasFavoris: Manga[] = [];
+  
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +33,30 @@ export class MangaService {
 
     return this.http.get<any[]>(AUTH_API + 'itemtype',  { headers: headers });
   }
+
+  ajouterAuFavoris(manga: Manga): void {
+    if (!this.mangasFavoris.includes(manga)) {
+      this.mangasFavoris.push(manga);
+      console.log('ajoute')
+    }
+  }
+
+  // Méthode pour supprimer un manga des favoris
+  supprimerDesFavoris(manga: Manga): void {
+    const index = this.mangasFavoris.indexOf(manga);
+    if (index !== -1) {
+      this.mangasFavoris.splice(index, 1);
+    }
+  }
+
+  // Méthode pour récupérer tous les mangas favoris
+  getMangasFavoris(): Manga[] {
+    return this.mangasFavoris;
+  }
+
+  estDansFavoris(manga: Manga): boolean {
+    return this.mangasFavoris.includes(manga);
+  }
+
 
 }

@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { registerLocaleData } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { ListeMangasComponent } from './Mangas/liste-mangas/liste-mangas.component';
+import { FavoriteMangaComponent } from './Mangas/favorite-manga/favorite-manga.component';
 
 const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
     {path:'header',component:HeaderComponent},
     {path:'register',component:RegisterComponent},
     {path:'listeMangas',component:ListeMangasComponent},
+    {path:'listeMangasfavoris',component:FavoriteMangaComponent},
 
 
 

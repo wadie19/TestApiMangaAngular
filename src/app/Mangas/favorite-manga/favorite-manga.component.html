@@ -1,0 +1,36 @@
+  <div class="container mt-4">    
+      <div class="row">
+          <div class="col">
+            <h1 style="text-align: center;">Liste de mangas</h1>
+          </div>
+      </div>
+        <hr>        
+      <div class="row">
+        <ng-container *ngFor="let manga of mangasFavoris">
+          <div class="col-4 pt-3">
+            <div class="card text-center h-100 d-flex flex-column">
+              <div class="card-header align-items-center">
+                {{ manga.name }}
+              </div>
+              <div class="card-body d-flex flex-column justify-content-center">
+                <p>Date de sortie : {{ manga.release_date }}</p>
+                <p>Catégorie : {{ manga.series_type.type.name }}</p>
+              </div>
+              <div class="card-footer text-muted d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" style="margin-right: 20px;">Détails</button>
+                <button 
+                (click)="supprimer(manga)" 
+                class="
+                    btn-favoris
+                    btn-favoris-supprimer
+                "
+                >
+                  Supprimer des favoris
+                </button>            
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  

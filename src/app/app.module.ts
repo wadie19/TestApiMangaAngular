@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { ListeMangasComponent } from './Mangas/liste-mangas/liste-mangas.component';
+import { FavoriteMangaComponent } from './Mangas/favorite-manga/favorite-manga.component';
 
 
 
@@ -20,6 +21,7 @@ import { ListeMangasComponent } from './Mangas/liste-mangas/liste-mangas.compone
     HeaderComponent,
     RegisterComponent,
     ListeMangasComponent,
+    FavoriteMangaComponent
   ],
   imports: [
     BrowserModule,
