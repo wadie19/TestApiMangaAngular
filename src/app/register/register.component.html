@@ -16,12 +16,12 @@
               est obligatoire</small>
               <small class="text-danger" style=" color:brown" *ngIf="email?.errors?.['email']">Format requise : test@example.com</small>
         </div>
-        <input type="text" id="password" class="fadeIn third" name="password" placeholder="Mot de passe" formControlName="password">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Mot de passe" formControlName="password">
         <div *ngIf="password?.touched && password?.invalid">
             <small class="text-danger" *ngIf="password?.errors?.['required']">Le mot de passe
               est obligatoire</small>
         </div>
-        <input type="text" id="password_confirmation" class="fadeIn third" name="password_confirmation" placeholder="Confirmer Mot de passe" formControlName="password_confirmation">
+        <input type="password" id="password_confirmation" class="fadeIn third" name="password_confirmation" placeholder="Confirmer Mot de passe" formControlName="password_confirmation">
         <div *ngIf="!egal && password_confirmation?.touched && password?.invalid && password_confirmation?.dirty" class="text-danger">
             <small class="text-danger" *ngIf="password?.errors?.['required']">
                 Les mots de passe ne concordes pas</small>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../services/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +9,41 @@ import { AuthServiceService } from '../services/auth-service.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService : AuthServiceService) { }
+  isConnected=false
+
+  constructor(private authService : AuthServiceService, private router : Router) { }
 
   ngOnInit(): void {
+    this.testLogin();
   }
 
   deconnexion()
   {
-    this.authService.logout()
+    this.authService.logout();
+    this.router.navigate(['/home']);
+
+  }
+
+  testLogin()
+  {
+    
+    if(localStorage.getItem("myToken"))
+    { 
+      this.isConnected=true;
+    }else{
+       
+      this.isConnected=false;
+      
+    }
+  }
+
+  gererAction(): void {
+    if (this.isConnected) {
+      console.log("ok");
+    } else {
+      alert("Veuillez vous connecter pour effectuer cette action.");
+      this.router.navigate(['/login']);
+    }
   }
 
 }

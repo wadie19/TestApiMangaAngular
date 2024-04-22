@@ -51,8 +51,8 @@ export class AuthServiceService {
     //localStorage.removeItem("myToken");
     //localStorage.removeItem("isLoggedIn");
     this.isConnected=false;
-    this.route.navigate(['/']);
     this.clean();
+    this.route.navigate(['/']);
     
   }
 

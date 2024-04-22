@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     let isLoggedIn = this.authService.isLoggedIn();
 
     if (isLoggedIn) {
-      this.router.navigate(['home']);
+      this.router.navigate(['listeMangas']);
     } 
   }
 
@@ -63,8 +63,8 @@ export class LoginComponent implements OnInit {
         let token = res.token;
         let tokenSansPrefixe = token.split('|')[1];
         localStorage.setItem("myToken",tokenSansPrefixe);
-
-        this.router.navigate(['home']);
+        window.location.reload();
+        this.router.navigate(['listeMangas']);
       },
       err=>{
         console.log(err);
